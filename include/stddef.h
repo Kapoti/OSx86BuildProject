@@ -17,6 +17,11 @@ typedef unsigned char bool;
 #define false 0
 #define true  1
 
+#define U8_MAX 0xFF
+#define U16_MAX 0xFFFFU
+#define U32_MAX 0xFFFFFFFFUL
+#define U64_MAX 0xFFFFFFFFFFFFFFFFULL
+
 #define ALIGN_UP(x, n)   (((x) + (n) - 1) & ~((n) - 1))
 #define ALIGN_DOWN(x, n) ((x) & ~((n) - 1))
 #define IS_ALIGNED(x, n) (((x) & ((n) - 1)) == 0)

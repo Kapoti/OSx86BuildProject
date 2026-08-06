@@ -16,7 +16,8 @@
 #define AREA_OVERLAP(as, ae, bs, be) ((uintptr_t)(ae) > (uintptr_t)(bs) && (uintptr_t)(as) < (uintptr_t)(be))
 
 uint8_t  *minit(struct MTBT2_InfoHeader *bootinfo);
-uintptr_t mfind(struct MTBT2_InfoHeader *bootinfo, size_t min_size);
+uintptr_t mfind(uint8_t *mat, size_t size);
 void      mmark(uint8_t *mat, uintptr_t base, uintptr_t end, bool in_use);
+uintptr_t malloc(uint8_t *mat, size_t size);
 
 #endif

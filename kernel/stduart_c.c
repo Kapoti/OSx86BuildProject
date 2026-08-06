@@ -51,8 +51,40 @@ void pprintf(const char *fmt, ...) {
 				}
 				break;
 			}
+			
+			case 'u': {
+				p ++;
+				switch(*p){
+					case 'd': {
+					unsigned int d = va_arg(args, unsigned int);
+					char buf[12];
+					itoa(d, buf, 10);
+					pputs(buf);
+					break;
+					}
+					case 'l': {
+						p ++;
+						if (*p == 'l') {
+							p++;
+							if (*p == 'd') {
+								uint64_t d = va_arg(args, uint64_t);
+								char buf[24];
+								itoa64(d, buf, 10);
+								pputs(buf);
+							} else if (*p == 'x') {
+								uint64_t x = va_arg(args, uint64_t);
+								char buf[24];
+								itoa64(x, buf, 16);
+								pputs(buf);
+							}
+						}
+						break;
+					}
+				}
+			}
+			
 			case 'c': {
-				char c = (char)va_arg(args, int);
+				unsigned char c = (unsigned char)va_arg(args, unsigned char);
 				pputchar(c);
 				break;
 			}

@@ -54,14 +54,14 @@ build: OSBuild.iso
 run: OSBuild.iso
 	$(EM) $(EFLAGS) OSBuild.iso
 
-debug: OSBuild.iso
+serial: OSBuild.iso
 	$(EM) $(EFLAGS) OSBuild.iso -serial stdio
 
 gdb: OSBuild.iso
-	@echo "QEMU started, please start GDB and use 'target remote localhost:1234' to connect QEMU"
+	@echo "Please start GDB and use 'target remote localhost:1234' to connect QEMU"
 	$(EM) $(EFLAGS) OSBuild.iso -serial stdio -s -S
 
 clean:
 	$(RM) oskernel OSBuild.iso *.o *.img build/
 
-.PHONY: default build run debug clean
+.PHONY: default build run serial clean

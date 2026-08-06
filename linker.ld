@@ -32,5 +32,7 @@ SECTIONS
 		*(COMMON)
 	}
 	
+	. = ALIGN(4096);
+	
 	kernend = .;
 }
