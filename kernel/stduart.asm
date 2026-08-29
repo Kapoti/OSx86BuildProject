@@ -1,4 +1,4 @@
-; OS x86 Build Project Standard UART I/O
+; OS x86 Build Project Standard UART I/O Assembly Code
 ; kernel/stduart.asm
 
 bits 32
@@ -69,9 +69,9 @@ inw:
 
 %define COM1 0x3f8
 
-; void pinit(void);
-global pinit
-pinit:
+; void uart_init(void);
+global uart_init
+uart_init:
 	push edx
 	push eax
 	
@@ -103,9 +103,9 @@ pinit:
 	pop edx
 	ret
 
-; uint8_t pgetstat(void)
-global pgetstat
-pgetstat:
+; uint8_t uart_getstat(void)
+global uart_getstat
+uart_getstat:
 	push edx
 	
 	mov dx, (COM1 + 5)
@@ -114,9 +114,9 @@ pgetstat:
 	
 	ret
 
-; void pputchar(const char c);
-global pputchar
-pputchar:
+; void uart_putchar(const char c);
+global uart_putchar
+uart_putchar:
 	push ebp
 	mov ebp, esp
 	push edx
@@ -137,9 +137,9 @@ pputchar:
 	pop ebp
 	ret
 
-; void pputs(const char *s);
-global pputs
-pputs:
+; void uart_puts(const char *s);
+global uart_puts
+uart_puts:
 	push ebp
 	mov ebp, esp
 	push edx

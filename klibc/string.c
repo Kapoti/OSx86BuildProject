@@ -2,8 +2,9 @@
  * kernel/string.c
  * WARNING: NOT A STANDARD GNU CODE
  */
-#include <string.h>
-#include <stddef.h>
+#include <klibc/string.h>
+#include <klibc/stddef.h>
+#include <klibc/stdbool.h>
 
 unsigned int strlen(const char *s){
 	unsigned int ret = 0;
@@ -140,3 +141,31 @@ void *memcpy(void *dest, const void *src, size_t n){
 	}
 	return dest;
 }
+
+bool strcmp(const char *s1, const char *s2) {
+	for(char cmp = 0; ; cmp ++) {
+		if(s1[cmp] != s2[cmp]) {
+			return false;
+		}
+		if(s1[cmp] == '\0') {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool memcmp(const void *s1, const void *s2, size_t n) {
+	const uint8_t *p1 = (uint8_t *)s1;
+	const uint8_t *p2 = (uint8_t *)s2;
+	
+	for(size_t i = 0; i < n; i ++) {
+		if(p1[i] != p2[i]) return false;
+	}
+	
+	return true;
+}
+
+bool strncmp(const char *s1, const char *s2, size_t n) {
+	return memcmp(s1, s2, n);
+}
+

@@ -21,19 +21,20 @@ DIR_BOOTLD = boot
 DIR_KERNEL = kernel
 DIR_BUILD  = build
 DIR_INCLUD = include
-FLE_KRNOBJ = mtbt2hd.o head.o main.o stduart.o stduart_c.o string.o memman.o stdgcc.o
+DIR_KLIBC  = klibc
+FLE_KRNOBJ = mtbt2hd.o head.o main.o stduart.o stduart_c.o string.o memman.o stdgcc.o mtboot2.o desctbl.o
 DIR_GRUBLB = /usr/lib/grub/i386-pc/
 
 
 # Normal rules
-%.o: $(DIR_BOOTLD)/%.asm
-	$(AS) $(AFLAGS) -o $@ $<
-
 %.o: $(DIR_KERNEL)/%.c
 	$(CC) $(CFLAGS) -o $@ $<
 
 %.o: $(DIR_KERNEL)/%.asm
 	$(AS) $(AFLAGS) -o $@ $<
+
+%.o: $(DIR_KLIBC)/%.c
+	$(CC) $(CFLAGS) -o $@ $<
 
 oskernel: $(FLE_KRNOBJ)
 	$(LD) $(LFLAGS) $^ -o $@

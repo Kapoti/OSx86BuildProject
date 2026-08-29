@@ -4,7 +4,6 @@
 bits 32
 
 global _AsmHeadInit
-; The _end symbol will set by linker
 
 extern ProgInit
 extern ProgMain
@@ -28,6 +27,12 @@ main:
 exit:
 	call ProgExit
 
+stop:
+	cli
+	hlt
+	jmp stop
+
+
 section .rodata
 db "OS x86 Build Project"
 db "(c) Project Novalight"
@@ -35,5 +40,5 @@ align 8
 
 section .bss
 stack_e:
-resq 128
+resq 1024
 stack_s:

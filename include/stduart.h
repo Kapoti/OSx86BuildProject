@@ -5,7 +5,8 @@
 #ifndef _STDUART_H
 #define _STDUART_H
 
-#include<stdint.h>
+#include <klibc/stdint.h>
+#include <klibc/stddef.h>
 
 #define COM1 0x3f8
 
@@ -14,11 +15,11 @@ void outw(uint16_t port, uint16_t data);
 uint8_t inb(uint16_t port);
 uint16_t inw(uint16_t port);
 
-uint8_t pgetstat(void);
+uint8_t uart_getstat(void);
 
-void pinit(void);
-void pputchar(const char c);
-void pputs(const char *s);
-void pprintf(const char *fmt, ...);
+void uart_init(void);
+void uart_putchar(const char c);
+void uart_puts(const char *s);
+void uart_printf(const char *fmt, ...);
 
 #endif

@@ -3,7 +3,7 @@
  * WARNING: NOT A STANDARD GNU CODE
  */
 
-#include <stdint.h>
+#include <klibc/stdint.h>
 
 // Unsigned 64-bit integer (qword) division and modulo functions
 uint64_t __udivdi3(uint64_t a, uint64_t b) {

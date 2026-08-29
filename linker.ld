@@ -13,16 +13,18 @@ SECTIONS
 		*(.multiboot2)
 	}
 	
+	kern_textstart = .;
 	.text : {
 		. = ALIGN(4);
 		*(.text)
 	}
+	kern_textend = .;
 	
+	kern_datastart = .;
 	.data : {
 		*(.data)
 	}
 	
-	/* Cannot sign 'rodata' to .rodata section*/
 	.rodata : {
 		*(.rodata)
 	}
@@ -31,6 +33,7 @@ SECTIONS
 		*(.bss)
 		*(COMMON)
 	}
+	kern_dataend = .;
 	
 	. = ALIGN(4096);
 	
